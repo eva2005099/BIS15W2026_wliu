@@ -41,6 +41,10 @@ x <- c(2,8,4,6,NA,4,9,9,10,NA)
 ```{r}
 mean(x)
 ```
+if we remove NA
+```{r}
+mean(x,na.rm=TRUE)
+```
 
 ## Knit and Upload
 Please knit your work as an .html file and upload to Canvas. Homework is due before the start of the next lab. No late work is accepted. Make sure to use the formatting conventions of RMarkdown to make your report neat and clean!  
