@@ -64,36 +64,101 @@ names(homerange)
 
 
 ```{r}
-
+homerange %>% 
+  filter(taxon=="mammals") %>% 
+  filter(trophic.guild=="herbivore") %>% 
+  filter(mean.hra.m2>1000000) %>% 
+  select(common.name,order,mean.hra.m2,mean.mass.g) %>% 
+  arrange(desc(mean.hra.m2)) %>% 
+  slice_head(n=10)
 ```
 
 **6. Which two species have the largest and smallest homerange sizes?**
-```{r}
 
+```{r}
+names(homerange)
+```
+
+
+```{r}
+homerange %>% 
+  select(mean.hra.m2,species) %>% 
+  arrange(desc(mean.hra.m2)) %>% 
+  slice_head(n=1)
 ```
 
 ```{r}
-
+homerange %>% 
+  select(mean.hra.m2,species) %>% 
+  arrange(desc(mean.hra.m2)) %>% 
+  slice_tail(n=1)
 ```
 
 **7. Which carnivorous mammals have the largest homeranges?**
-```{r}
 
+```{r}
+names(homerange)
+```
+
+
+```{r}
+homerange %>% 
+  filter(trophic.guild=="carnivore") %>% 
+  filter(taxon=="mammals") %>% 
+  select(common.name,mean.hra.m2) %>% 
+  arrange(desc(mean.hra.m2)) %>% 
+  slice_head(n=1)
 ```
 
 **8. Is there a relationship between body mass and homerange size? Make a scatterplot to show this relationship. Be sure to include appropriate labels and a title.**
-```{r}
 
+```{r}
+names(homerange)
+```
+
+
+```{r}
+ggplot(homerange,
+       mapping=aes(x=mean.mass.g,y=mean.hra.m2))+
+  geom_point()+
+  scale_x_log10()+
+  scale_y_log10()+
+  labs(
+    title="relationship between body mass and homerange size",x="Mean body mass (g, log scale)",y="Mean home range (m², log scale)")
 ```
 
 **9. Use filter to extract the data for only birds and mammals. Then make a plot that compares the homerange sizes of these two groups. Be sure to include appropriate labels and a title.**
 ```{r}
-
+homerange %>% 
+  filter(taxon %in% c("birds","mammals")) %>% 
+ggplot(mapping=aes(x=taxon,y=mean.hra.m2,fill=taxon))+
+  geom_boxplot()+
+  labs(title="Home range sizes: birds vs mammals",x="Taxon",y="Mean home range (m^2, log scale)") +
+  scale_y_log10()
 ```
 
 **10. Do one additional exploratory analysis of your choice. Before writing the code, write the question you are trying to answer. The question should be biologically meaningful and appropriate for the data. It must include at least one `filter()`, `select()`, and `arrange()`.**
-```{r}
 
+```{r}
+names(homerange)
+```
+
+Do carnivores mammals have larger home ranges than herbivorous mammals?
+
+```{r}
+homerange %>% 
+  filter(taxon=="mammals") %>% 
+  select(taxon,common.name,trophic.guild,trophic.guild,mean.hra.m2) %>% 
+  arrange(desc(mean.hra.m2))
+```
+
+```{r}
+homerange %>% 
+  filter(taxon=="mammals") %>% 
+  ggplot(mapping=aes(x=trophic.guild,y=mean.hra.m2,fill=trophic.guild))+
+  geom_boxplot()+
+  labs(title="Do carnivorous mammals have larger home ranges than herbivorous mammals?",x="Trophic guild",y="Mean home range size (m^2, log scale)")+
+  scale_y_log10()
 ```
 
 ## Knit and Upload
