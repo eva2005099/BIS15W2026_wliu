@@ -72,7 +72,12 @@ Let's think about this another way- can we make a plot that shows the effect of 
   
 To fix this problem, we need to reshape the table to long format while keeping track of column names and values. We do this using `pivot_longer()`. Notice that the dimensions of the data frame change.  
 ```{r}
-
+heartrate %>% 
+  pivot_longer(
+    cols=!"patient",
+    names_to="group",
+    values_to="heartrate"
+  )
 ```
 
 ## Practice
@@ -97,7 +102,12 @@ billboard
 
 Solution 1: specify a range of columns that you want to pivot.
 ```{r}
-
+billboard %>% 
+  pivot_longer(
+    cols=starts_with("wk"),
+    names_to="week",
+    values_to="rank "
+  )
 ```
 
 Solution 2: OR, specify columns that you want to stay fixed.
@@ -113,14 +123,19 @@ Solution 3: identify columns by a prefix, remove the prefix and all NA's.
 ## Practice  
 1. Import `plant_data.csv` as a new object `plant_data`.  
 ```{r}
-
+plant_data <- read_csv("data/plant_data.csv")
 ```
 
 2. Why are these data not tidy?  
 
 3. Use `pivot_longer()` to make the data tidy. Focus the data only on genotype, water_sched_prog, and greenhouse.  
 ```{r}
-
+plant_data %>% 
+  pivot_longer(
+    cols=starts_with("day"),
+    names_to="day",
+    values_to="data"
+  )
 ```
 
 ## Example 3: more than one variable in a column name
@@ -132,7 +147,13 @@ qpcr_untidy
 
 `names_sep` helps pull these apart, but we still have "exp" and "rep" to deal with.  
 ```{r}
-
+qpcr_untidy %>% 
+  pivot_longer(
+    cols=starts_with("exp"),
+    names_to=c("experiment","replication"),
+    names_sep="_",
+    values_to="expression"
+  )
 ```
 
 

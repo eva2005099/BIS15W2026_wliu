@@ -95,6 +95,10 @@ gap %>%
 
 I like to see both the histogram and the density curve so I often plot them together. Note that I assign the density plot a different color.
 ```{r}
+names(gap)
+```
+
+```{r}
 gap %>% 
   filter(year==1935) %>% 
   ggplot(aes(x=lex))+

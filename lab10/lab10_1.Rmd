@@ -55,6 +55,7 @@ life_history %>%
 life_history %>% 
   count(order,sort=T)
 ```
+
 ```{r}
 life_history %>% 
   count(order,sort=T) %>% 
@@ -70,6 +71,7 @@ life_history %>%
   summarize(mean_mass=mean(mass, na.rm=T)) %>% 
 arrange(desc(mean_mass))
 ```
+
 ```{r}
 life_history %>% 
   group_by(order) %>% 
