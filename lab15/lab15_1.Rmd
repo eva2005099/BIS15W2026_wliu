@@ -40,7 +40,17 @@ shinyApp(ui, server)
 
 Let's use the built-in msleep data to build a basic app. The data are from: V. M. Savage and G. B. West. A quantitative, theoretical framework for understanding mammalian sleep. Proceedings of the National Academy of Sciences, 104 (3):1051-1056, 2007.
 ```{r}
+library(shiny)
 
+ui <- fluidPage(
+  
+)
+
+server <- function(input, output, session) {
+  
+}
+
+shinyApp(ui, server)
 ```
 
 Since the data are focused on sleep patterns, let's make a plot that shows the range of `sleep_total` by `vore` type.
