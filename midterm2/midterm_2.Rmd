@@ -113,10 +113,11 @@ gg_miss_var(polar_bears)
 
 ```{r}
 polar_bears %>% 
-  count(sex) %>% 
-  ggplot(aes(x=sex,y=n,fill=sex))+
-  geom_col()+
-  labs(title="Male VS. Female distribution",x="Sex",y="Count")
+  count(popn,sex) %>% 
+  ggplot(aes(x=popn,y=n,fill=sex))+
+  geom_col(position="dodge")+
+  labs(title="Male VS. Female distribution",x="Population Group",y="Count")+
+  theme_minimal()
 ```
 
 
@@ -131,27 +132,25 @@ polar_bears_4 <-
 ```
 
 ```{r}
-summary(polar_bears_4)
-```
-
-```{r}
 polar_bears_4 %>% 
-  count(year)
-```
-
-```{r}
-polar_bears_4 %>% 
-  count(year) %>% 
-  ggplot(aes(x=year,y=n))+
+  count(year,popn) %>% 
+  ggplot(aes(x=year,y=n,color=popn,group=popn))+
   geom_line()+
   geom_point()
 ```
 
 ```{r}
 polar_bears_4 %>% 
-  count(year) %>% 
-  ggplot(aes(x=year,y=n))+
-  geom_line()
+  count(year,popn) %>% 
+  ggplot(aes(x=year,y=n,color=popn,group=popn))+
+  geom_line()+
+  geom_point()+
+  theme_minimal()+
+  labs(title="Annual Sampling Count by Population",
+       x="Year",
+       y="Number of Bears Sampled",
+       color="Population")+
+  theme(axis.text.x=element_text(angle=45,vjust=1,hjust=1))
 ```
 
 
@@ -201,12 +200,18 @@ polar_bears_6 <-
 ```
 
 ```{r}
-#polar_bears_6 %>% 
-  #filter(fasting=="Yes") %>% 
-  #count(year) %>% 
-  #ggplot(aes(x=year))+
-  #geom_histogram()
-  
+polar_bears_6 %>% 
+  filter(fasting=="Yes") %>% 
+  count(year,popn) %>% 
+  ggplot(aes(x=year,y=n,color=popn,group=popn))+
+  geom_line()+
+  geom_point()+
+  theme_minimal()+
+  theme(axis.text.x=element_text(angle=45,hjust=1))+
+  labs(title="Annual Trend of Fasting Bears by Population",
+       x="Year",
+       y="Number of Fasting Bears",
+       color="Population")
 ```
 
 
