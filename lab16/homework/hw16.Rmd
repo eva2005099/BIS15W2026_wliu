@@ -1,6 +1,6 @@
 ---
 title: "Homework YY"
-author: "Your Name Here"
+author: "Weifan Liu"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -88,7 +88,7 @@ top_10 <-
 ```
  
 
-**4. create a plot that shows the different in percent identity for each Scientific Name of the top 10 blastx hits. Make sure to label your axes and give your plot a title.**
+**4. create a plot that shows the different in ——percent identity for each Scientific Name of the top 10 blastx hits. Make sure to label your axes and give your plot a title.**
 
 ```{r}
 top_10 %>% 
@@ -140,13 +140,15 @@ top_blastn_hit
 
 ```
 
+Based on the BLASTX and BLASTN results, the gene appears to encode a minor capsid protein. The top matches in both searches correspond to Yersinia pestis, with very high percent identity and extremely low E-values. Therefore, this gene most likely originated from Yersinia pestis.
+
 **8. For the top blastn hit, click on the accession link for this bacteria and download the coding sequences as a FASTA Protein file. Read the fasta file into R using the Biostrings package and store it in an object called `goi_blastn_hit`.**
 ```{r}
-
+goi_blastn_hit <- readDNAStringSet("data/goi_blastn_hit.fasta")
 ```
 
 ```{r}
-
+goi_blastn_hit
 ```
 
 **9. From the same organism, identify 5 other annotated genes? Do these genes suggest about the biology or virulence of this bacterium?** *Annotated genes can be found in the "CDS" section of the GenBank file. You can also find genes by going to summary page for the organism and looking at the "View annotated genes" section.*
