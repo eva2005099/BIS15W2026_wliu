@@ -153,13 +153,16 @@ goi_blastn_hit
 
 **9. From the same organism, identify 5 other annotated genes? Do these genes suggest about the biology or virulence of this bacterium?** *Annotated genes can be found in the "CDS" section of the GenBank file. You can also find genes by going to summary page for the organism and looking at the "View annotated genes" section.*
 ```{r}
-
+my_data <- read.delim("data/ncbi_dataset.tsv")
 ```
 
-
+```{r}
+my_data
+```
+I identified lysine N(6)-hydroxylase/L-ornithine N(5)-oxygenase family protein,IucA/IucC family protein,GNAT family N-acetyltransferase,MFS transporter,intradiol ring-cleavage dioxygenase
 **10. Now that you have an idea of this bacteria's identity, what illness/disease do you think the patient has? What is the historical or public health significance of this disease? Based on the gene you identified, what role might this gene play in pathogenicity?**
 ```{}
-
+# The patient likely has severe pneumonia or sepsis caused by hypervirulent Klebsiella pneumoniae.This is a major public health threat due to high antibiotic resistance. The identified genes (like IucA/C) increase pathogenicity by allowing the bacteria to thrive in iron-poor host tissues, making the infection more invasive and deadly.
 ```
 
 
